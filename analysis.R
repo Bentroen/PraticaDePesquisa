@@ -34,6 +34,9 @@ y <- dataset |> dplyr::filter(
                                 ((Area.Code == 5000)))
 
 
+# Filtrar territórios com código < 5000 (países)
+dataset = dataset |> dplyr::filter((Area.Code < 5000))
+
 # Separar emissões por setor
 sectors = list(
   agriculture = dataset |> dplyr::filter((Item == "Agriculture total")),
@@ -78,6 +81,5 @@ save(y, file="./rdata/World.RData", compress=TRUE)
 
 
 # PRÓXIMO PASSO:
-# 1) Pegar países com código < 5000
 # 2) Somar colunas 1990-2017
 # 3) Extrair os 10 maiores
