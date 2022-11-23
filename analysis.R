@@ -74,3 +74,10 @@ n2o_emissions = dataset |> dplyr::filter((Element == "N2O emissions"))
 
 save(y, file="./rdata/World.RData", compress=TRUE)
 
+
+
+
+# PRÓXIMO PASSO:
+# 1) Pegar países com código < 5000
+# 2) Somar colunas 1990-2017
+# 3) Extrair os 10 maiores
