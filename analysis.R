@@ -62,8 +62,10 @@ for (name in names(sectors)) {
   names(gases)[length(gases)] = sprintf("%s.%s", name, "N2O")
 }
 
-print(gases$industry.N2O)
-
+# Salvar RData das emissões
+f = "Emissions_by_sector_CO2_CH4_N2O"
+outfile = paste("./rdata/", f, ".RData", sep="", collapse=NULL)
+save(gases, file=outfile, compress=TRUE)
 
 
 co2_emissions = dataset |> dplyr::filter((Element == "CO2 emissions"))
