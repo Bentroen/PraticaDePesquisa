@@ -83,3 +83,8 @@ save(y, file="./rdata/World.RData", compress=TRUE)
 # PRÓXIMO PASSO:
 # 2) Somar colunas 1990-2017
 # 3) Extrair os 10 maiores
+
+
+df %>%
+  replace(is.na(.), 0) %>%
+  mutate(sum = rowSums(across(where(is.numeric))))
