@@ -1,5 +1,8 @@
-install.packages('forecast')
-install.packages("TSPred")
+# install.packages('forecast')
+# install.packages("TSPred")
+
+source("https://raw.githubusercontent.com/eogasawara/mylibrary/master/myBasic.R")
+source("https://raw.githubusercontent.com/eogasawara/mylibrary/master/myTSRegression.R")
 
 x <-as.vector(t(pais_india$energy.CO2.india))
 
