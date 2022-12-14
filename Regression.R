@@ -6,7 +6,7 @@ source("https://raw.githubusercontent.com/eogasawara/mylibrary/master/myTSRegres
 
 x <-as.vector(t(pais_india$energy.CO2.india))
 
-train_test <- function(x, model, sw_size, test_size, steps_ahead) {
+train_test <- function(x, model, sw_size, test_size, steps_ahead, xlabels) {
   ts <- ts_data(x, sw_size)
   
   samp <- ts_sample(ts, test_size)
@@ -33,13 +33,14 @@ train_test <- function(x, model, sw_size, test_size, steps_ahead) {
     prep <- sprintf("-%s", class(model$preprocess)[1])    
   
   print(sprintf("%s%s %.2f", class(model)[1], prep, 100*ev_prediction$metrics$smape))
-  
+
   yvalues <- c(io_train$output, io_test$output)
-  plot(model, y=yvalues, yadj=adjust, ypre=prediction)
+  plot(model, y=yvalues, yadj=adjust, ypre=prediction, xlabels=xlabels)
   return(model)
 }
 
 
+xlabels = 1990:2017
 
 model <- train_test(x, model=tsreg_arima(), 0, 
-                    test_size = tsize, steps_ahead = sahead)
+                    test_size = tsize, steps_ahead = sahead, xlabels=xlabels)
