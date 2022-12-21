@@ -1,11 +1,8 @@
-library(magrittr)
-library(dplyr)
-
 ranked = dataset |> dplyr::filter(
   (
     #(Item == "Agriculture total") |
-    #(Item == "Industrial processes and product use") |
-    (Item == "Energy")
+    (Item == "Industrial processes and product use") 
+    #(Item == "Energy")
   ) & (
     (Element == "CO2 emissions") #|
     #(Element == "CH4 emissions") |
@@ -25,10 +22,12 @@ sort(somaranked,decreasing=TRUE)
 
 ranked["soma"]<-somaranked
 
-somas <-ranked[,-2:-29]
+ranked <-ranked[,-2:-29]
 
-somas<-somas[order(somas$soma, decreasing = TRUE)]
-j<-order(somas$soma,decreasing=TRUE)
+somas<-somas[order(somas['soma'], decreasing = TRUE)]
+j<-order(somas['soma'],decreasing=TRUE)
 somasord<-somas[j,]
 
 rank <- head(somasord, 10)
+
+save(rank,file='MaioresAgricultura.RData',compress=TRUE)
